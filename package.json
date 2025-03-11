@@ -1,0 +1,11 @@
+{
+  "name": "reminder",
+  "version": "0.0.0",
+  "description": "to provide reminder to user",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/index.js"
+  },
+  "author": "yogananda",
+  "license": "ISC"
+}
