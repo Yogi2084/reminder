@@ -8,21 +8,38 @@ const reminderDB = new reminderDatabase();
 const id1 = reminderDB.createReminder({
     title: 'Meeting',
     description: 'Meeting with the team',
-    dueDate: '2025-03-10'
+    dueDate: '2025-03-10',
+    prioity:'Mid'
 });
 
 const id2 = reminderDB.createReminder({
     title: 'Interview',
     description: 'Interview with the candidate',
-    dueDate: '2021-10-15'
+    dueDate: '2021-10-15',
+    prioity:'Mid'
 });
 
 const id3 = reminderDB.createReminder({
     title: 'Shopping',
     description: 'Grocery Shopping',
-    dueDate: '2021-10-20'
+    dueDate: '2021-10-20',
+    prioity:'Low'
 });
 
+const id4 = reminderDB.createReminder({
+    title: "Doctor's Appointment",
+    description: "Visit Dr. Smith at 3 PM",
+    dueDate: "2025-03-12",
+    prioity:'High'
+});
+const id5 = reminderDB.createReminder({
+    title: "project review",
+    description: "reveiwing the internship project",
+    dueDate: "2025-03-12",
+    prioity:'High'
+});
+
+reminderDB.sortRemindersByPriority();
 
 console.log('First-Time Creation:\n')
 console.log(reminderDB.getAllReminders());
@@ -53,6 +70,8 @@ reminderDB.markAsCompleted(id1);
 console.log("\nReminders after marking the first one as completed:");
 console.log(reminderDB.getAllReminders());
 
+
+
 //get all marked as completed tasks
 reminderDB.getCompletedReminders();
 
@@ -61,3 +80,7 @@ reminderDB.getIncompletedReminders();
 
 //checking past due reminders
 reminderDB.getPastDueReminders();
+
+reminderDB.searchReminderById(id4);
+
+reminderDB.sortRemindersByPriority();

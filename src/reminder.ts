@@ -4,6 +4,8 @@ type reminder = {
     description?: string;
     dueDate?: string;
     isCompleted?: boolean;
+    prioity?:string;
+
 }
 
 export class reminderDatabase{
@@ -91,7 +93,7 @@ export class reminderDatabase{
 
 
     //get all incompleted reminders
-    getIncompletedReminders(): reminder[] {
+    getIncompletedReminders(): void {
         const incompletedReminders = Array.from(this.reminders.values()).filter(reminder => !reminder.isCompleted);
     
         console.log("\nIncomplete Reminders:\n");
@@ -101,8 +103,6 @@ export class reminderDatabase{
         } else {
             console.log(incompletedReminders);
         }
-    
-        return incompletedReminders;
     }
 
 
@@ -129,6 +129,33 @@ export class reminderDatabase{
     
         return pastDueReminders;
     }
-
+    searchReminderById(id: string): reminder | undefined {
+        const reminder = this.reminders.get(id);
+        if (!reminder) {
+            console.log(`\nNo reminder found with id: '${id}'\n`);
+            return undefined;
+        }
+        console.log(`\nReminder found:\n`, reminder);
+        return reminder;
+    }sortRemindersByPriority(): reminder[] {
+        const priorityOrder: { [key: string]: number } = {
+            "Low": 1,
+            "Medium": 2,
+            "High": 3
+        };
+    
+        const sortedReminders = Array.from(this.reminders.values()).sort((a, b) => {
+            const priorityA = a.prioity ? priorityOrder[a.prioity] : 4; // Default to lowest priority if not defined
+            const priorityB = b.prioity ? priorityOrder[b.prioity] : 4;
+            return priorityA - priorityB; // Ascending order
+        });
+    
+        console.log("\nReminders sorted by priority (ascending):\n");
+        console.log(sortedReminders);
+    
+        return sortedReminders;
+    }
+    
+    
 
 }
